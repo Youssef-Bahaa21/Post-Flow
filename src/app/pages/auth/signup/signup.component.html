@@ -1,0 +1,162 @@
+<section
+  class="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-200 p-6"
+>
+  <form
+    class="w-full max-w-lg bg-white p-8 rounded-xl shadow-2xl"
+    [formGroup]="formdetails"
+    (ngSubmit)="signup()"
+  >
+    <!-- Form Header -->
+    <h2 class="text-2xl font-semibold text-gray-800 text-center mb-6">
+      Create an Account
+    </h2>
+
+    <!-- Email Input -->
+    <div class="relative z-0 w-full mb-6 group">
+      <input
+        type="email"
+        name="floating_email"
+        id="floating_email"
+        class="block py-3 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        formControlName="email"
+        required
+      />
+      <label
+        for="floating_email"
+        class="absolute text-sm text-gray-500 transform -translate-y-6 scale-75 top-3 left-0 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600"
+      >
+        Email Address
+      </label>
+    </div>
+
+    <!-- Full Name -->
+    <div class="relative z-0 w-full mb-6 group">
+      <input
+        type="text"
+        name="floating_name"
+        id="floating_name"
+        class="block py-3 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        formControlName="name"
+        required
+      />
+      <label
+        for="floating_name"
+        class="absolute text-sm text-gray-500 transform -translate-y-6 scale-75 top-3 left-0 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600"
+      >
+        Full Name
+      </label>
+    </div>
+
+    <!-- Password Inputs -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="password"
+          name="floating_password"
+          id="floating_password"
+          class="block py-3 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+          formControlName="password"
+        />
+        <label
+          for="floating_password"
+          class="absolute text-sm text-gray-500 transform -translate-y-6 scale-75 top-3 left-0 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600"
+        >
+          Password
+        </label>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="password"
+          name="repeat_password"
+          id="floating_repeat_password"
+          class="block py-3 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          formControlName="rePassword"
+          required
+        />
+        <label
+          for="floating_repeat_password"
+          class="absolute text-sm text-gray-500 transform -translate-y-6 scale-75 top-3 left-0 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600"
+        >
+          Confirm Password
+        </label>
+      </div>
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="relative z-0 w-full mb-6 group">
+      <input
+        type="date"
+        name="floating_dob"
+        id="floating_dob"
+        class="block py-3 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        required
+        formControlName="dateOfBirth"
+      />
+      <label
+        for="floating_dob"
+        class="absolute text-sm text-gray-500 transform -translate-y-6 scale-75 top-3 left-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600"
+      >
+        Date of Birth
+      </label>
+    </div>
+
+    <!-- Gender Selection -->
+    <div class="relative z-0 w-full mb-6">
+      <label class="block mb-2 text-sm text-gray-600">Gender</label>
+      <div class="flex items-center gap-6">
+        <label class="flex items-center cursor-pointer">
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            class="w-4 h-4 text-blue-600 focus:ring-blue-500"
+            required
+            formControlName="gender"
+          />
+          <span class="ml-2 text-gray-700">Male</span>
+        </label>
+        <label class="flex items-center cursor-pointer">
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            class="w-4 h-4 text-blue-600 focus:ring-blue-500"
+            required
+          />
+          <span class="ml-2 text-gray-700">Female</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      [disabled]="formdetails.invalid"
+      type="submit"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-lg py-3 transition duration-200"
+    >
+      Sign Up
+    </button>
+
+    <!-- Divider -->
+    <div class="flex items-center my-6">
+      <hr class="w-full border-gray-300" />
+      <span class="px-3 text-gray-500 text-sm">or</span>
+      <hr class="w-full border-gray-300" />
+    </div>
+
+    <!-- Login Link -->
+    <p class="text-sm text-gray-600 text-center mt-6">
+      Already have an account?
+      <a
+        routerLink="/login"
+        class="text-blue-600 hover:text-blue-800 font-medium"
+        >Log in</a
+      >
+    </p>
+  </form>
+</section>

@@ -1,0 +1,97 @@
+<section class="min-h-screen py-10 bg-gradient-to-b from-blue-50 to-white">
+  <div class="container mx-auto px-6">
+    <ng-container *ngIf="post; else loadingOrError">
+      <div
+        class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8 transform transition duration-200 hover:shadow-lg border border-blue-100"
+      >
+        <div class="flex items-center mb-8 border-b border-blue-50 pb-4">
+          <img
+            [src]="post.user.photo"
+            alt="User Photo"
+            class="w-12 h-12 rounded-full object-cover mr-4 border-2 border-blue-400"
+          />
+          <div>
+            <h1 class="text-xl font-bold text-gray-800">
+              {{ post.user.name }}
+            </h1>
+            <time class="text-sm text-gray-500">
+              {{ post.createdAt | date : "MMM d, y • h:mm a" }}
+            </time>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <p class="text-gray-700 text-lg leading-relaxed">
+            {{ post.body }}
+          </p>
+        </div>
+
+        <div *ngIf="post.image" class="mb-8 overflow-hidden rounded-lg">
+          <img
+            [src]="post.image"
+            alt="Post Image"
+            class="w-full h-auto object-cover transition duration-200 hover:scale-102 shadow-sm"
+          />
+        </div>
+
+        <hr class="border-blue-50 mb-6" />
+
+        <!-- Comments Section -->
+        <div>
+          <button
+            #commentsBtn
+            class="text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-200 focus:outline-none mb-4 flex items-center"
+          >
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 8h10M7 12h4m1 8l-5-5H4a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v8a2 2 0 01-2 2h-4l-5 5z"
+              ></path>
+            </svg>
+            View Comments
+          </button>
+          @defer (on interaction(commentsBtn)) {
+          <div class="mt-6">
+            <h2 class="text-xl font-bold mb-3 flex items-center">
+              <svg
+                class="w-6 h-6 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 8h10M7 12h4m1 8l-5-5H4a2 2 0 01-2-2V5a2 2 0 012-2h16a2 2 0 012 2v8a2 2 0 01-2 2h-4l-5 5z"
+                ></path>
+              </svg>
+              Comments
+            </h2>
+            <app-comments [postId]="post._id"></app-comments>
+          </div>
+          }
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loadingOrError>
+      <div class="text-center py-10">
+        <p *ngIf="errorMessage; else loadingMsg" class="text-red-500">
+          {{ errorMessage }}
+        </p>
+        <ng-template #loadingMsg>
+          <p class="text-blue-600 text-lg">Loading post...</p>
+        </ng-template>
+      </div>
+    </ng-template>
+  </div>
+</section>

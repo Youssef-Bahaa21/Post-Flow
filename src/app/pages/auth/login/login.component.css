@@ -1,0 +1,4 @@
+button:disabled {
+  background-color: #d1d5db; /* Gray color when disabled */
+  cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+}

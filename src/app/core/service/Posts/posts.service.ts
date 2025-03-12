@@ -7,35 +7,29 @@ import { environment } from '../../enviroment/enviroment';
   providedIn: 'root'
 })
 export class PostsService {
+  constructor(private httpClient: HttpClient) { }
 
+  createPost(data: object): Observable<any> {
+    return this.httpClient.post(`${environment.baseUrl}/posts`, data);
+  }
 
-  constructor(private httpClient:HttpClient) { }
-
-
-
-  createPost(data:object):Observable <any>{
-      return this.httpClient.post(`${environment.baseUrl}/posts`,data) 
-      }
-  
-   getAllPosts():Observable <any>{
-      return this.httpClient.get(`${environment.baseUrl}/posts`) 
-     }
+  getAllPosts(): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}/posts`);
+  }
       
-   getMyPosts():Observable <any>{
-       return this.httpClient.get(`${environment.baseUrl}/users/664bcf3e33da217c4af21f00/posts`) 
-      }
+  getMyPosts(): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}/users/664bcf3e33da217c4af21f00/posts`);
+  }
   
-   getSinglePost(id:string):Observable <any>{
-      return this.httpClient.get(`${environment.baseUrl}/posts/${id}`) 
-          }
+  getSinglePost(id: string): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}/posts/${id}`);
+  }
 
-       
-  
-   updatePost(data:object , id:string):Observable <any>{
-      return this.httpClient.put(`${environment.baseUrl}/posts/${id}`,data) 
-        }
+  updatePost(data: object, id: string): Observable<any> {
+    return this.httpClient.put(`${environment.baseUrl}/posts/${id}`, data);
+  }
          
-   deletePost( id:string):Observable <any>{
-       return this.httpClient.delete(`${environment.baseUrl}/posts/${id}`) 
-        }
+  deletePost(id: string): Observable<any> {
+    return this.httpClient.delete(`${environment.baseUrl}/posts/${id}`);
+  }
 }
